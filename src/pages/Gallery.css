@@ -2,26 +2,21 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-width: 1000px;
-    /* ~3 cards bredvid varandra */
     margin: 0 auto;
-    /* centrera hela galleriet */
-    gap: 24px;
-    /* mer luft mellan korten */
-    padding: 32px 16px;
-    /* lite padding runt */
+    gap: 16px;
+    padding: 40px 16px 64px;
 }
 
 .card {
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.25);
+    background: transparent;
+    transition: border-color 0.3s ease;
 }
 
-.card__title {
-    padding: 10px 12px;
-    font-weight: 600;
-    color: rgba(44, 168, 151, 0.49);
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
 .frame {
@@ -34,11 +29,24 @@
     display: block;
 }
 
-.card__actions {
-    padding: 8px 12px;
-    font-size: 14px;
-    color: rgba(44, 168, 151, 0.49);
+.card__meta {
+    padding: 10px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
 
+.card__title {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.04em;
+}
+
+.card__sub {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.2);
+    font-style: italic;
 }
 
 .frame *::before,

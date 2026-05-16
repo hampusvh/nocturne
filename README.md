@@ -1,11 +1,13 @@
-# Dev Blueprint 🌌
+![](https://capsule-render.vercel.app/api?type=waving&color=14171b,1d2025&height=100&section=header&animation=fadeIn)
 
-Experimental project with CSS and animations to create abstract, artistic designs.  
-Each “canvas” in the gallery represents a standalone concept — ranging from subtle gradients to more vivid, animated backgrounds.
+<div align="center">
 
-![Gallery preview](assets/preview.png)
+# nocturne
 
-### Concept
-- Exploring **CSS as a form of art**
-- Experimenting with color, light, and motion
-- Building a catalog of visual concepts that may inspire future projects
+*...Things made in the dark...*
+
+![](assets/preview.png)
+
+</div>
+
+![](https://capsule-render.vercel.app/api?type=waving&color=14171b,1d2025&height=60&section=footer)
