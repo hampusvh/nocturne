@@ -6,7 +6,7 @@
 
 *...Things made in the dark...*
 
-![](assets/preview.png)
+![](assets/preview.png?v=2)
 
 </div>
 
