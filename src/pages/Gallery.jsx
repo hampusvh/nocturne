@@ -23,7 +23,7 @@ const Gallery = () => {
             <article className="card">
                 <div className="frame"><JungleExperiment /></div>
                 <footer className="card__meta">
-                    <span className="card__title">Jungle</span>
+                    <span className="card__title">Overgrowth</span>
                     <span className="card__sub">Older than anything with a name</span>
                 </footer>
             </article>
