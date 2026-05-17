@@ -1,0 +1,80 @@
+$card-border: rgba(255, 255, 255, 0.06);
+$card-border-hover: rgba(255, 255, 255, 0.12);
+$card-radius: 8px;
+$title-color: rgba(255, 255, 255, 0.5);
+$sub-color: rgba(100, 180, 160, .35);
+
+@mixin pausable-targets($elements...) {
+    @each $el in $elements {
+        .frame #{$el} {
+            animation-play-state: paused !important;
+        }
+
+        .frame:hover #{$el} {
+            animation-play-state: running !important;
+        }
+    }
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 16px;
+    padding: 40px 16px 64px;
+}
+
+.card {
+    border: 0.5px solid $card-border;
+    border-radius: $card-radius;
+    overflow: hidden;
+    background: transparent;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+        border-color: $card-border-hover;
+    }
+
+    &__meta {
+        padding: 10px 12px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__title {
+        font-size: 12px;
+        font-weight: 500;
+        color: $title-color;
+        letter-spacing: 0.04em;
+    }
+
+    &__sub {
+        font-size: 11px;
+        color: $sub-color;
+        font-style: italic;
+    }
+}
+
+.frame {
+    aspect-ratio: 16 / 10;
+
+    >* {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+}
+
+.frame *::before,
+.frame *::after {
+    animation-play-state: paused !important;
+}
+
+.frame:hover *::before,
+.frame:hover *::after {
+    animation-play-state: running !important;
+}
+
+@include pausable-targets('.mist', '.beam', '.light', '.glow', '.atmosphere');

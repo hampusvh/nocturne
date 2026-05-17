@@ -1,0 +1,87 @@
+$font-stack: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+$text: #e9edf4;
+$muted: #bfc6d6;
+$g0: #1a1d22;
+$g1: #16181e;
+$g2: #12141a;
+
+$spot: rgba(255, 255, 255, .045);
+$bar-bg: rgba(20, 22, 28, .72);
+$bar-blur: 6px;
+$bar-line: rgba(255, 255, 255, .06);
+
+:root {
+    --text: #{$text};
+    --muted: #{$muted};
+    --g0: #{$g0};
+    --g1: #{$g1};
+    --g2: #{$g2};
+    --spot: #{$spot};
+    --bar-bg: #{$bar-bg};
+    --bar-blur:#{$bar-blur};
+    --bar-line:#{$bar-line};
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    font-family: $font-stack;
+    color: $text;
+    background:
+        radial-gradient(60% 40% at 50% 14%, rgba(30, 40, 60, .08) 0%, transparent 60%),
+        linear-gradient(180deg, #1a1d22 0%, #16181e 50%, #12141a 100%);
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+%bar-base {
+    background: $bar-bg;
+    color: inherit;
+    border-color: $bar-line;
+}
+
+.topbar {
+    @extend %bar-base;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-bottom: 1px solid $bar-line;
+}
+
+.site-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .3);
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+}
+
+:focus-visible {
+    outline: 2px solid #7cc0ff;
+    outline-offset: 2px;
+}
+
+::selection {
+    background: rgba(124, 192, 255, .25);
+}
