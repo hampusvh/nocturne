@@ -1,13 +1,14 @@
-![](https://capsule-render.vercel.app/api?type=waving&color=14171b,1d2025&height=100&section=header&animation=fadeIn)
+![](https://capsule-render.vercel.app/api?type=waving&color=0:050816,25:0B1F2A,55:1A1633,80:12343B,100:050816&height=70&section=header&animation=fadeIn)
 
 <div align="center">
 
-# nocturne
+*Small experiments in motion and atmosphere.*
 
-*...Things made in the dark...*
+<br>
+<br>
 
 ![](assets/preview.png?v=2)
 
 </div>
 
-![](https://capsule-render.vercel.app/api?type=waving&color=14171b,1d2025&height=60&section=footer)
+![](https://capsule-render.vercel.app/api?type=waving&color=0:050816,25:0B1F2A,55:1A1633,80:12343B,100:050816&height=70&section=footer)
