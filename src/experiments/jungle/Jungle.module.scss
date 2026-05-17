@@ -1,0 +1,180 @@
+.root {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    isolation: isolate;
+
+    background:
+        radial-gradient(50% 40% at 50% 60%, rgba(40, 100, 50, .30) 0%, transparent 70%),
+        radial-gradient(30% 25% at 20% 50%, rgba(20, 70, 35, .20) 0%, transparent 60%),
+        radial-gradient(25% 20% at 80% 45%, rgba(15, 60, 30, .18) 0%, transparent 55%),
+        linear-gradient(180deg,
+            #060e06 0%,
+            #0a1a0c 20%,
+            #0d2210 45%,
+            #0a1c0d 70%,
+            #060e06 100%);
+}
+
+.glow {
+    position: absolute;
+    inset: -15%;
+    pointer-events: none;
+    z-index: 0;
+
+    background:
+        radial-gradient(20% 25% at 52% 62%, rgba(80, 180, 60, .20) 0%, transparent 100%),
+        radial-gradient(15% 20% at 22% 55%, rgba(40, 140, 80, .14) 0%, transparent 70%),
+        radial-gradient(12% 18% at 78% 48%, rgba(50, 120, 40, .12) 0%, transparent 60%),
+        radial-gradient(35% 15% at 50% 95%, rgba(20, 80, 30, .22) 0%, transparent 70%),
+        radial-gradient(40% 15% at 50% 5%, rgba(20, 60, 50, .15) 0%, transparent 60%);
+
+    filter: blur(8px);
+    animation: glowBreath 18s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.mist {
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    z-index: 1;
+
+    background:
+        radial-gradient(50% 12% at 40% 58%, rgba(60, 140, 70, .08) 0%, transparent 100%),
+        radial-gradient(40% 10% at 65% 62%, rgba(40, 120, 60, .06) 0%, transparent 100%),
+        radial-gradient(60% 8% at 50% 68%, rgba(30, 100, 50, .05) 0%, transparent 100%);
+
+    filter: blur(12px);
+    animation: mistDrift 28s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.root::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+
+    background-color: #050d05;
+
+    -webkit-mask:
+        radial-gradient(ellipse 15% 100% at -2% 100%, #000 0%, #000 58%, transparent 59%),
+        radial-gradient(ellipse 9% 90% at 13% 100%, #000 0%, #000 54%, transparent 55%),
+        radial-gradient(ellipse 6% 75% at 24% 100%, #000 0%, #000 50%, transparent 51%),
+        radial-gradient(ellipse 15% 100% at 102% 100%, #000 0%, #000 58%, transparent 59%),
+        radial-gradient(ellipse 9% 85% at 88% 100%, #000 0%, #000 52%, transparent 53%),
+        radial-gradient(ellipse 6% 70% at 76% 100%, #000 0%, #000 48%, transparent 49%),
+        radial-gradient(ellipse 5% 65% at 50% 100%, #000 0%, #000 48%, transparent 49%),
+        radial-gradient(ellipse 4% 55% at 38% 100%, #000 0%, #000 45%, transparent 46%),
+        radial-gradient(ellipse 4% 50% at 62% 100%, #000 0%, #000 44%, transparent 45%),
+        radial-gradient(ellipse 75% 30% at 12% -2%, #000 0%, #000 58%, transparent 59%),
+        radial-gradient(ellipse 65% 24% at 82% -4%, #000 0%, #000 55%, transparent 56%),
+        radial-gradient(ellipse 50% 20% at 48% 0%, #000 0%, #000 52%, transparent 53%),
+        radial-gradient(ellipse 30% 14% at 30% 2%, #000 0%, #000 48%, transparent 49%),
+        radial-gradient(ellipse 85% 12% at 50% 106%, #000 0%, #000 55%, transparent 56%);
+
+    mask:
+        radial-gradient(ellipse 15% 100% at -2% 100%, #000 0%, #000 58%, transparent 59%),
+        radial-gradient(ellipse 9% 90% at 13% 100%, #000 0%, #000 54%, transparent 55%),
+        radial-gradient(ellipse 6% 75% at 24% 100%, #000 0%, #000 50%, transparent 51%),
+        radial-gradient(ellipse 15% 100% at 102% 100%, #000 0%, #000 58%, transparent 59%),
+        radial-gradient(ellipse 9% 85% at 88% 100%, #000 0%, #000 52%, transparent 53%),
+        radial-gradient(ellipse 6% 70% at 76% 100%, #000 0%, #000 48%, transparent 49%),
+        radial-gradient(ellipse 5% 65% at 50% 100%, #000 0%, #000 48%, transparent 49%),
+        radial-gradient(ellipse 4% 55% at 38% 100%, #000 0%, #000 45%, transparent 46%),
+        radial-gradient(ellipse 4% 50% at 62% 100%, #000 0%, #000 44%, transparent 45%),
+        radial-gradient(ellipse 75% 30% at 12% -2%, #000 0%, #000 58%, transparent 59%),
+        radial-gradient(ellipse 65% 24% at 82% -4%, #000 0%, #000 55%, transparent 56%),
+        radial-gradient(ellipse 50% 20% at 48% 0%, #000 0%, #000 52%, transparent 53%),
+        radial-gradient(ellipse 30% 14% at 30% 2%, #000 0%, #000 48%, transparent 49%),
+        radial-gradient(ellipse 85% 12% at 50% 106%, #000 0%, #000 55%, transparent 56%);
+
+    -webkit-mask-composite: source-over;
+    mask-composite: add;
+
+    animation: jungleShift 30s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.root::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+
+    background:
+        radial-gradient(120% 120% at 50% 50%,
+            transparent 40%,
+            rgba(3, 8, 3, .4) 70%,
+            rgba(2, 6, 2, .7) 100%);
+}
+
+@keyframes glowBreath {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    35% {
+        opacity: .7;
+        transform: scale(1.04);
+    }
+
+    68% {
+        opacity: .9;
+        transform: scale(.97);
+    }
+}
+
+@keyframes mistDrift {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: .8;
+    }
+
+    30% {
+        transform: translate(-3%, 1%);
+        opacity: 1;
+    }
+
+    65% {
+        transform: translate(2%, -1.5%);
+        opacity: .6;
+    }
+}
+
+@keyframes jungleShift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    30% {
+        transform: translateX(-.8%);
+    }
+
+    65% {
+        transform: translateX(1%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .root::before,
+    .root::after,
+    .glow,
+    .mist {
+        animation: none;
+    }
+}

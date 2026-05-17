@@ -1,0 +1,83 @@
+$min-height: 220px;
+$radius: 12px;
+
+$sky-top: #1b1820;
+$sky-mid: #121419;
+$sky-bottom: #0b0e12;
+
+$dune-near: #1f2022;
+$dune-mid: #16181b;
+$dune-far: #0e1115;
+
+$sun-glow: rgba(255, 190, 120, .30);
+$horizon-haze: rgba(180, 120, 70, .22);
+
+.root {
+    width: 100%;
+    height: 100%;
+    min-height: $min-height;
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius;
+    isolation: isolate;
+
+    background: linear-gradient(180deg, $sky-top 0%, $sky-mid 55%, $sky-bottom 100%);
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -10% -10% -6% -10%;
+        pointer-events: none;
+        z-index: 0;
+
+        background:
+            radial-gradient(40% 35% at 78% 18%, $sun-glow, transparent 60%),
+            radial-gradient(70% 40% at 50% 95%, $horizon-haze, transparent 70%),
+            radial-gradient(120% 90% at 50% 50%,
+                transparent 55%,
+                rgba(0, 0, 0, .28) 85%,
+                rgba(0, 0, 0, .45) 100%);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -2% -12% -6% -12%;
+        pointer-events: none;
+        z-index: 1;
+
+        background:
+            radial-gradient(120% 120% at 40% 115%, $dune-near 0 52%, transparent 52.2%),
+            radial-gradient(140% 120% at 56% 110%, $dune-mid 0 52%, transparent 52.2%),
+            radial-gradient(160% 120% at 70% 107%, $dune-far 0 52%, transparent 52.3%);
+
+        background-blend-mode: normal;
+        mask: linear-gradient(#000 0 0);
+
+        animation: duneParallax 40s linear infinite;
+        animation-play-state: paused;
+    }
+}
+
+@keyframes duneParallax {
+    0% {
+        background-position: 0px 0px, -60px 0px, 120px 0px;
+        transform: translateX(0);
+    }
+
+    50% {
+        background-position: -240px 0px, 120px 0px, -160px 0px;
+        transform: translateX(1.2%);
+    }
+
+    100% {
+        background-position: -480px 0px, 240px 0px, -320px 0px;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .root::before {
+        animation: none;
+    }
+}

@@ -1,0 +1,120 @@
+$min-height: 220px;
+$radius: 12px;
+
+$sky-glow: rgba(30, 40, 80, .15);
+$sky-top: #04060e;
+$sky-mid-1: #060914;
+$sky-mid-2: #080c18;
+$sky-bottom: #0a0e1a;
+
+$reflection: rgba(200, 210, 255, .18);
+$water-glow: rgba(100, 120, 180, .10);
+$horizon-1: rgba(120, 140, 200, .12);
+$horizon-2: rgba(80, 100, 160, .08);
+
+$wave-near: #06090f;
+$wave-mid: #070a12;
+$wave-far: #080b14;
+
+.root {
+    width: 100%;
+    height: 100%;
+    min-height: $min-height;
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius;
+    isolation: isolate;
+
+    background:
+        radial-gradient(60% 40% at 50% 0%, $sky-glow, transparent 70%),
+        linear-gradient(180deg,
+            $sky-top 0%,
+            $sky-mid-1 35%,
+            $sky-mid-2 55%,
+            $sky-bottom 100%);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -5% -10%;
+        pointer-events: none;
+        z-index: 1;
+
+        background:
+            radial-gradient(3% 18% at 50% 52%, $reflection, transparent 100%),
+            radial-gradient(30% 8% at 50% 54%, $water-glow, transparent 100%),
+            linear-gradient(180deg,
+                transparent 48%,
+                $horizon-1 50%,
+                $horizon-2 51%,
+                transparent 54%);
+
+        animation: tideBreath 18s ease-in-out infinite;
+        animation-play-state: paused;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: -2% -15%;
+        pointer-events: none;
+        z-index: 2;
+
+        background:
+            radial-gradient(140% 12% at 48% 80%, $wave-near 0 48%, transparent 48.5%),
+            radial-gradient(150% 10% at 52% 70%, $wave-mid 0 46%, transparent 46.5%),
+            radial-gradient(160% 8% at 50% 62%, $wave-far 0 44%, transparent 44.5%);
+
+        animation: tideShift 24s ease-in-out infinite;
+        animation-play-state: paused;
+    }
+}
+
+@keyframes tideBreath {
+
+    0%,
+    100% {
+        transform: translateY(0) scaleX(1);
+        opacity: 1;
+    }
+
+    30% {
+        transform: translateY(.8%) scaleX(1.01);
+        opacity: .85;
+    }
+
+    60% {
+        transform: translateY(-.5%) scaleX(.99);
+        opacity: .95;
+    }
+}
+
+@keyframes tideShift {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+
+    25% {
+        transform: translateX(-1.5%) translateY(.6%);
+    }
+
+    50% {
+        transform: translateX(1%) translateY(-.4%);
+    }
+
+    75% {
+        transform: translateX(-.8%) translateY(.3%);
+    }
+
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .root::before,
+    .root::after {
+        animation: none;
+    }
+}

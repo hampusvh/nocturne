@@ -1,0 +1,225 @@
+$min-height: 220px;
+$radius: 12px;
+
+$sky-top: #04060c;
+$sky-mid-1: #060912;
+$sky-mid-2: #080c16;
+$sky-bottom: #060810;
+
+$tower-top: #1c2235;
+$tower-bottom: #141826;
+
+$horizon-1: rgba(60, 80, 120, .12);
+$horizon-2: rgba(40, 60, 100, .08);
+$water-reflect: rgba(150, 170, 220, .08);
+$fog-color: rgba(80, 100, 140, .06);
+
+$beam-bright: rgba(255, 245, 200, .5);
+$beam-fade: rgba(255, 245, 200, .15);
+$light-color: rgba(255, 245, 200, .9);
+$light-glow-1: rgba(255, 245, 200, .4);
+$light-glow-2: rgba(255, 220, 150, .2);
+
+$tower-mask: linear-gradient(#000 0 0) center 28% / 55% 68% no-repeat,
+    linear-gradient(#000 0 0) center 0% / 100% 20% no-repeat,
+    linear-gradient(#000 0 0) center 100% / 75% 6% no-repeat;
+
+.root {
+    width: 100%;
+    height: 100%;
+    min-height: $min-height;
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius;
+    isolation: isolate;
+
+    background: linear-gradient(180deg,
+            $sky-top 0%,
+            $sky-mid-1 40%,
+            $sky-mid-2 65%,
+            $sky-bottom 100%);
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+
+        background:
+            linear-gradient(180deg,
+                transparent 58%,
+                $horizon-1 60%,
+                $horizon-2 62%,
+                transparent 66%),
+            radial-gradient(6% 8% at 62% 70%, $water-reflect, transparent 100%),
+            radial-gradient(80% 20% at 50% 60%, $fog-color, transparent 100%);
+
+        animation: seaBreath 14s ease-in-out infinite;
+        animation-play-state: paused;
+    }
+}
+
+.mist {
+    position: absolute;
+    inset: -20% -30%;
+    pointer-events: none;
+    z-index: 2;
+
+    background:
+        radial-gradient(70% 30% at 30% 65%, rgba(140, 160, 200, .06), transparent 70%),
+        radial-gradient(50% 25% at 75% 70%, rgba(120, 140, 180, .05), transparent 60%),
+        radial-gradient(90% 20% at 50% 75%, rgba(100, 120, 160, .04), transparent 50%);
+
+    filter: blur(8px);
+    animation: mistDrift 22s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.tower {
+    position: absolute;
+    left: 62%;
+    bottom: 0;
+    width: min(7%, 44px);
+    height: min(52%, 200px);
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 3;
+
+    background: linear-gradient(180deg, $tower-top 0%, $tower-bottom 100%);
+
+    -webkit-mask: $tower-mask;
+    mask: $tower-mask;
+}
+
+.beam {
+    position: absolute;
+    left: 62%;
+    top: 26%;
+    width: 60%;
+    height: 3px;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: left center;
+
+    background: linear-gradient(90deg,
+            $beam-bright 0%,
+            $beam-fade 40%,
+            transparent 100%);
+    filter: blur(4px);
+
+    animation: beamSweep 9s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.light {
+    position: absolute;
+    left: 62%;
+    top: 26%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 4;
+
+    background: $light-color;
+    box-shadow:
+        0 0 6px 3px $light-glow-1,
+        0 0 16px 6px $light-glow-2;
+
+    animation: lightPulse 9s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+@keyframes seaBreath {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    40% {
+        transform: translateX(-1.5%);
+        opacity: .8;
+    }
+
+    70% {
+        transform: translateX(1%);
+        opacity: .9;
+    }
+}
+
+@keyframes mistDrift {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    30% {
+        transform: translateX(-4%);
+        opacity: .7;
+    }
+
+    65% {
+        transform: translateX(3%);
+        opacity: .85;
+    }
+}
+
+@keyframes beamSweep {
+
+    0%,
+    50% {
+        transform: rotate(-30deg);
+        opacity: .9;
+    }
+
+    25% {
+        transform: rotate(20deg);
+        opacity: 1;
+    }
+
+    75% {
+        transform: rotate(15deg);
+        opacity: .95;
+    }
+
+    100% {
+        transform: rotate(-30deg);
+        opacity: .9;
+    }
+}
+
+@keyframes lightPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: .6;
+    }
+
+    50% {
+        opacity: .9;
+    }
+
+    75% {
+        opacity: .5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .root::after,
+    .mist,
+    .beam,
+    .light {
+        animation: none;
+    }
+}

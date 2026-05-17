@@ -1,4 +1,4 @@
-import styles from "./Cactus.module.css";
+import styles from "./Cactus.module.scss";
 
 const CactusExperiment = () => {
     return <div className={styles.root} aria-hidden />;

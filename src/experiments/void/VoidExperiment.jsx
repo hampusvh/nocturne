@@ -1,6 +1,6 @@
-import styles from "./Void.module.css";
+import styles from "./Void.module.scss";
 
-const VoidExperiment = () => {
+const ForestExperiment = () => {
     return <div className={styles.root} aria-hidden />;
 }
-export default VoidExperiment;
+export default ForestExperiment;
