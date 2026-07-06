@@ -17,6 +17,7 @@ $sub-color: rgba(100, 180, 160, .35);
 }
 
 .gallery {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-width: 1000px;
@@ -29,8 +30,9 @@ $sub-color: rgba(100, 180, 160, .35);
     border: 0.5px solid $card-border;
     border-radius: $card-radius;
     overflow: hidden;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.294);
     transition: border-color 0.3s ease;
+    padding: 5px;
 
     &:hover {
         border-color: $card-border-hover;
@@ -40,7 +42,7 @@ $sub-color: rgba(100, 180, 160, .35);
         padding: 10px 12px 12px;
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 5px;
     }
 
     &__title {
@@ -80,3 +82,17 @@ $sub-color: rgba(100, 180, 160, .35);
 }
 
 @include pausable-targets('.mist', '.beam', '.light', '.glow', '.atmosphere');
+
+@media (hover: none) {
+
+    .frame *::before,
+    .frame *::after {
+        animation-play-state: running !important;
+    }
+
+    @each $el in '.mist', '.beam', '.light', '.glow', '.atmosphere' {
+        .frame #{$el} {
+            animation-play-state: running !important;
+        }
+    }
+}
